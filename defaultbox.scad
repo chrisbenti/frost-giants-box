@@ -9,16 +9,16 @@
 //*******************************************************************************************************
 
 // Disk radius
-d = 42;            // mm
+d = 43;            // mm
 r = d / 2;         // mm
 circle_height = 4; // mm
-support_height = 30;
+support_height = 12;
 support_diameter = 8.25;               // mm
 support_radius = support_diameter / 2; // mm
-bottom_bump = 8;
+bottom_bump = 9;
 
 disk_gap = 5; // mm
-disks_x = 2;
+disks_x = 3;
 disks_y = 3;
 
 disk_collector_size_x = disks_x * (d + disk_gap);
@@ -26,9 +26,9 @@ disk_collector_size_y = disks_y * (d + disk_gap);
 
 /* [View] */
 // Select View
-View = "Complete Open"; // [Complete, Complete Open, Parts, Lid, Bottom, Latch, Seal ]
+View = "Parts"; // [Complete, Complete Open, Parts, Lid, Bottom, Latch, Seal ]
 // Open Angle for complete Open
-ViewAngle = 120; //[0:180]
+ViewAngle = 90; //[0:180]
 
 /* [General] */
 
@@ -80,7 +80,7 @@ HingeLidLength = ScrewLength - 2 * HingeBottomLength - HingeWidthTolerance;
 
 /* [Side Ribs] */
 // Number of Side rib Pairs
-NumRibs = 1;
+NumRibs = 2;
 // if more than 1 Side Rib Pair, distance of Ribs to the inner corner
 RibOffset = 18;
 // Width of Ribs
@@ -132,28 +132,7 @@ iWall = 1;
 // Interior definition, everything here get masked an added to the interior of bottom and optional lid
 module Interior()
 {
-    // Start with our base frame
-    // translate(v = [ -1 * disk_collector_size_x / 2, -1 * disk_collector_size_y / 2, 0 ])
-    translate(v = [ r + disk_gap / 2, r + disk_gap / 2, bottom_bump ])
-    {
-        for (x = [0:disks_x - 1])
-        {
-            for (y = [0:disks_y - 1])
-            {
-                translate([ x * (d + disk_gap), y * (d + disk_gap), 0 ])
-                {
-                    difference()
-                    {
-                        cube([ d + disk_gap, d + disk_gap, circle_height ], center = true);
-                        cylinder(h = circle_height + 10, r = r, center = true);
-                    }
-                    cylinder(h = support_height, r = support_radius, center = true);
-                }
-            }
-        }
-    }
-
-    cube([ disk_collector_size_x, disk_collector_size_y, bottom_bump / 2 ]);
+    diskHolder();
 }
 
 // evertything here gets substracted (difference() ) from the lid
@@ -176,4 +155,36 @@ module bottomadd()
 {
 }
 
+module diskHolder()
+{
+    // Start with our base frame
+    // translate(v = [ -1 * disk_collector_size_x / 2, -1 * disk_collector_size_y / 2, 0 ])
+    translate(v = [ r + disk_gap / 2, r + disk_gap / 2, bottom_bump ])
+    {
+        for (x = [0:disks_x - 1])
+        {
+            for (y = [0:disks_y - 1])
+            {
+                translate([ x * (d + disk_gap), y * (d + disk_gap), 0 ])
+                {
+                    difference()
+                    {
+                        cube([ d + disk_gap, d + disk_gap, circle_height ], center = true);
+                        cylinder(h = circle_height + 10, r = r, center = true);
+                    }
+                    translate(v = [ 0, 0, circle_height ])
+                        cylinder(h = support_height, r = support_radius, center = true);
+                    translate(v = [ 0, 0, support_height - 2 ]) sphere(r = support_radius);
+                }
+            }
+        }
+    }
+
+    cube([ disk_collector_size_x, disk_collector_size_y, bottom_bump ]);
+}
+
+if (View == "None")
+{
+    diskHolder();
+}
 include <rugbox.scad>
