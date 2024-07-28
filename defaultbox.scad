@@ -8,7 +8,7 @@
 //
 //*******************************************************************************************************
 
-// Disk radius
+// DISK VARIABLES
 d = 43;            // mm
 r = d / 2;         // mm
 circle_height = 4; // mm
@@ -23,12 +23,14 @@ disks_y = 3;
 
 disk_collector_size_x = disks_x * (d + disk_gap);
 disk_collector_size_y = disks_y * (d + disk_gap);
+// END DISK VARIABLES
 
 /* [View] */
 // Select View
-View = "Bottom"; // [Complete, Complete Open, Parts, Lid, Bottom, Latch, Seal ]
+// None does just the rings portion
+View = "Complete Open"; // [Complete, Complete Open, Parts, Lid, Bottom, Latch, Seal, None]
 // Open Angle for complete Open
-ViewAngle = 90; //[0:180]
+ViewAngle = 130; //[0:180]
 
 /* [General] */
 
