@@ -18,7 +18,7 @@ support_radius = support_diameter / 2; // mm
 bottom_bump = 9;
 
 disk_gap = 5; // mm
-disks_x = 3;
+disks_x = 2;
 disks_y = 3;
 
 disk_collector_size_x = disks_x * (d + disk_gap);
@@ -26,7 +26,7 @@ disk_collector_size_y = disks_y * (d + disk_gap);
 
 /* [View] */
 // Select View
-View = "Parts"; // [Complete, Complete Open, Parts, Lid, Bottom, Latch, Seal ]
+View = "Bottom"; // [Complete, Complete Open, Parts, Lid, Bottom, Latch, Seal ]
 // Open Angle for complete Open
 ViewAngle = 90; //[0:180]
 
