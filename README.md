@@ -29,7 +29,7 @@ Grab the STLs from [`output/`](output):
 
 [`complete.stl`](output/complete.stl) is the assembled box, for reference only.
 
-You'll also need **M3 × 30 mm screws** for the hinge pins and latch – 3 with the default settings (see `ScrewLength`, `ScrewDiameter`, `NumHinge` and `NumLatch` in the SCAD file).
+You'll also need *4* ** M3 × 30 mm screws** for the hinge pins and latch.
 
 ### Embedded lid text (Orca / Bambu)
 
