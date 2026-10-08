@@ -1,0 +1,5 @@
+{
+    "code-runner.executorMap": {
+        "scad": "bin/build_and_slice.sh $file",
+    }
+}

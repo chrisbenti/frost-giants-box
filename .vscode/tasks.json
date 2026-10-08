@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build and Slice",
+			"type": "process",
+			"command": "${workspaceFolder}/bin/build_and_slice.sh",
+			"args": ["${file}"],
+			"group": "build"
+		},
+		{
+			"label": "Preview",
+			"type": "process",
+			"command": "openscad",
+			"args": ["${file}"],
+			"group": "build"
+		}
+	]
+}
