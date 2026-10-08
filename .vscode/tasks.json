@@ -2,10 +2,9 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Build and Slice",
+			"label": "Build",
 			"type": "process",
-			"command": "${workspaceFolder}/bin/build_and_slice.sh",
-			"args": ["${file}"],
+			"command": "${workspaceFolder}/bin/build.sh",
 			"group": "build"
 		},
 		{
